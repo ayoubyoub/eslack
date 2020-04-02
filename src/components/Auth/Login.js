@@ -63,6 +63,9 @@ class Login extends React.Component {
             <Icon name="code branch" color="violet" />
             Login to eSlack
           </Header>
+          <Header as="h5" icon color="black" textAlign="center">
+            sis.ayoub.youb@gmail.com / 123456
+          </Header>
           <Form onSubmit={this.handleSubmit} size="large">
             <Segment stacked>
               <Form.Input
