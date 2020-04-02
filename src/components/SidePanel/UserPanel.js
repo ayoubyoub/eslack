@@ -37,6 +37,10 @@ class UserPanel extends React.Component {
     {
       key: "avatar",
       text: <span onClick={this.openModal}>Change Avatar</span>
+    },
+    {
+      key: "signout",
+      text: <span onClick={this.handleSignout}>Sign Out</span>
     }
   ];
 
@@ -61,6 +65,7 @@ class UserPanel extends React.Component {
         photoURL: this.state.uploadedCroppedImage
       })
       .then(() => {
+        console.log("PhotoURL updated");
         this.closeModal();
       })
       .catch(err => {
@@ -71,6 +76,7 @@ class UserPanel extends React.Component {
       .child(this.state.user.uid)
       .update({ avatar: this.state.uploadedCroppedImage })
       .then(() => {
+        console.log("User avatar updated");
       })
       .catch(err => {
         console.error(err);
@@ -102,10 +108,10 @@ class UserPanel extends React.Component {
   };
 
   handleSignout = () => {
-    /*firebase
+    firebase
       .auth()
       .signOut()
-      .then(() => console.log("signed out!"));*/
+      .then(() => console.log("signed out!"));
   };
 
   render() {

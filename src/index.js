@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import Login from "./components/Auth/Login";
 import Spinner from "./utils/spinner";
+import firebase from "./utils/firebase";
 
 import "semantic-ui-css/semantic.min.css";
 
@@ -22,8 +24,15 @@ const store = createStore(rootReducer, composeWithDevTools());
 
 class Root extends React.Component {
   componentDidMount() {
-   this.props.setUser();
-   this.props.history.push("/");
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.setUser(user);
+        this.props.history.push("/");
+      } else {
+        this.props.history.push("/login");
+        this.props.clearUser();
+      }
+    });
   }
 
   render() {
@@ -32,6 +41,7 @@ class Root extends React.Component {
     ) : (
       <Switch>
         <Route exact path="/" component={App} />
+        <Route path="/login" component={Login} />
       </Switch>
     );
   }

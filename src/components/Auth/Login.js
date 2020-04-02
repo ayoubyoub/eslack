@@ -9,12 +9,11 @@ import {
   Message,
   Icon
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
-    email: "",
-    password: "",
+    email: "sis.ayoub.youb@gmail.com",
+    password: "123456",
     errors: [],
     loading: false
   };
@@ -107,9 +106,6 @@ class Login extends React.Component {
               {this.displayErrors(errors)}
             </Message>
           )}
-          <Message>
-            Don't have an account? <Link to="/register">Register</Link>
-          </Message>
         </Grid.Column>
       </Grid>
     );
